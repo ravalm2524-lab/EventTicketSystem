@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Confirmed</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <style>
+        body {
+            padding: 40px;
+            text-align: center; /* सब कुछ सेंटर में करें */
+        }
+        .confirmation-box {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        /* एक 'चेकमार्क' आइकॉन के लिए स्टाइल */
+        .checkmark {
+            font-size: 50px;
+            color: #28a745; /* हरा रंग */
+            line-height: 1;
+        }
+        .confirmation-box h1 {
+            color: #28a745;
+            margin-top: 20px;
+        }
+        /* नया स्टाइल: डिटेल्स के लिए */
+        .details-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .details-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        .details-list li strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="confirmation-box">
+        <div class="checkmark">&#10004;</div> <h1>Booking Confirmed!</h1>
+        <p>Your booking details for:</p>
+        <h2>{{ event.name }}</h2>
+        
+        <ul class="details-list">
+            <li>
+                <span>Tickets Booked:</span>
+                <strong>{{ quantity }}</strong>
+            </li>
+            <li>
+                <span>Price per Ticket:</span>
+                <strong>₹{{ event.price }}</strong>
+            </li>
+            <li style="border-top: 2px solid #ddd; padding-top: 15px;">
+                <span>Total Price:</span>
+                <strong style="color: #007bff; font-size: 20px;">₹{{ total_price }}</strong>
+            </li>
+        </ul>
+        <p style="margin-top: 30px;">
+            <a href="{% url 'my_tickets_view' %}" class="details-button">View My Tickets</a> | 
+            <a href="{% url 'event_list' %}" class="details-button">Back to All Events</a>
+        </p>
+    </div>
+
+</body>
+</html>

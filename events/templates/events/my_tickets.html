@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Tickets</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <style>
+        /* New Styles for better ticket display */
+        .booking-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-left: 5px solid #007bff; /* Highlight */
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px auto; /* Centered with margin */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            max-width: 800px; /* Max width added */
+            list-style: none; /* Remove list style for clean card design */
+        }
+        .ticket-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed #dee2e6;
+        }
+        .ticket-details strong {
+            display: inline-block;
+            min-width: 120px;
+        }
+        .price-total {
+            font-size: 1.2em;
+            color: #28a745; /* Green color for total price */
+            font-weight: bold;
+        }
+        .no-tickets {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="{% url 'event_list' %}" class="nav-brand">EventTickets</a>
+        </div>
+        <div class="nav-right">
+            {% if user.is_authenticated %}
+                <span class="nav-user">Welcome, {{ user.username }}!</span>
+                <a href="{% url 'my_tickets_view' %}" class="nav-link nav-button">My Tickets</a> 
+                <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="nav-link">Login</a>
+                <a href="{% url 'signup' %}" class="nav-link nav-button">Sign Up</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <h1 style="text-align: center; margin-top: 30px;">My Booked Tickets</h1>
+
+    {% if bookings %}
+        <div class="booking-list"> {% for booking in bookings %}
+                <div class="booking-card">
+                    <h2 style="color:#007bff;">{{ booking.event.name }}</h2>
+                    
+                    <div class="ticket-details">
+                        <div>
+                            <p><strong>Ticket ID:</strong> #{{ booking.id }}</p>
+                            <p><strong>Quantity:</strong> {{ booking.quantity }}</p>
+                            <p><strong>Location:</strong> {{ booking.event.location }}</p>
+                        </div>
+                        
+                        <div>
+                            <p><strong>Price/Ticket:</strong> ₹{{ booking.event.price }}</p>
+                            <p><strong>Booked Date:</strong> {{ booking.booking_time|date:"F d, Y" }}</p>
+                            <p><strong>Event Date:</strong> {{ booking.event.date|default:"TBD" }}</p>
+                            <p class="price-total"><strong>Total Paid:</strong> ₹{{ booking.total_price }}</p>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 20px;">
+                        <a href="{% url 'event_detail' booking.event.id %}" class="details-button">View Event Details</a>
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="no-tickets">
+            <p>You haven't booked any tickets yet.</p>
+            <a href="{% url 'event_list' %}" class="details-button">Browse Events</a>
+        </div>
+    {% endif %}
+
+</body>
+</html>

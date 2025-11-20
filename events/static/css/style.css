@@ -1,0 +1,142 @@
+/* बेसिक पेज स्टाइल */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* हल्का ग्रे बैकग्राउंड */
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+/* हेडिंग को सेंटर में करें */
+h1 {
+    text-align: center;
+    color: #444;
+}
+
+/* लिस्ट से बुलेट पॉइंट्स हटा दें */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* हर इवेंट के लिए एक 'कार्ड' बनाएँ */
+li {
+    background-color: #ffffff; /* सफ़ेद बैकग्राउंड */
+    border: 1px solid #ddd;
+    border-radius: 8px; /* गोल किनारे */
+    padding: 20px;
+    margin-bottom: 20px; /* हर कार्ड के बीच में जगह */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* हल्की परछाई */
+    transition: transform 0.2s; /* हल्का एनीमेशन */
+}
+
+/* कार्ड पर माउस ले जाने पर (hover) */
+li:hover {
+    transform: translateY(-5px); /* कार्ड थोड़ा ऊपर उठेगा */
+}
+
+/* इवेंट का नाम (Title) */
+li h2 {
+    margin-top: 0;
+    color: #0056b3; /* नीला रंग */
+}
+
+/* पैराग्राफ टेक्स्ट */
+li p {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+/* 'Location', 'Date', 'Price' टेक्स्ट को बोल्ड करें */
+li strong {
+    color: #555;
+}
+/* डिटेल्स बटन स्टाइल */
+.details-button {
+    display: inline-block;
+    background-color: #007bff; /* नीला बटन */
+    color: #ffffff; /* सफ़ेद टेक्स्ट */
+    padding: 10px 15px;
+    text-decoration: none; /* लिंक का अंडरलाइन हटाएँ */
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+/* बटन पर माउस ले जाने पर (hover) */
+.details-button:hover {
+    background-color: #0056b3; /* गहरा नीला */
+}
+/* बुक नाउ बटन */
+.book-button {
+    display: inline-block;
+    background-color: #28a745; /* हरा रंग */
+    color: #ffffff;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
+    transition: background-color 0.2s;
+}
+
+.book-button:hover {
+    background-color: #218838; /* गहरा हरा */
+}
+/* --- नेविगेशन बार स्टाइल --- */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 15px 30px;
+    display: flex; /* यह चीज़ों को एक लाइन में रखता है */
+    justify-content: space-between; /* 'बाएं' और 'दाएं' हिस्से को अलग करता है */
+    align-items: center;
+    margin-bottom: 30px; /* navbar और 'Upcoming Events' के बीच जगह */
+}
+
+/* बाईं तरफ (ब्रांड नाम) */
+.nav-left .nav-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+/* दाईं तरफ (लिंक्स) */
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-right .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    margin-left: 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+/* लिंक्स पर माउस ले जाने पर */
+.nav-right .nav-link:hover {
+    background-color: #555;
+}
+
+/* 'Sign Up' बटन को अलग दिखाने के लिए */
+.nav-right .nav-button {
+    background-color: #007bff;
+    border: none;
+}
+.nav-right .nav-button:hover {
+    background-color: #0056b3;
+}
+
+/* "Welcome, user!" टेक्स्ट */
+.nav-user {
+    color: #ccc;
+    margin-right: 15px;
+}

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        /* हम 'detail-card' स्टाइल का दोबारा इस्तेमाल करेंगे */
+        .form-card {
+            max-width: 500px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .form-card h1 {
+            text-align: center;
+        }
+        /* फॉर्म फ़ील्ड्स को बेहतर दिखाने के लिए */
+        .form-card input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* यह पैडिंग को सही रखता है */
+        }
+        .form-card ul {
+            list-style-type: none;
+            padding: 0;
+            color: #888;
+        }
+        .form-card li {
+            padding: 0;
+            margin: 0;
+            background: none;
+            box-shadow: none;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-card">
+        <h1>Sign Up</h1>
+        <form method="POST">
+            {% csrf_token %} {{ form.as_p }} <button type="submit" class="book-button" style="width:100%;">Sign Up</button>
+        </form>
+        <p style="text-align:center; margin-top: 20px;">
+            Already have an account? <a href="#">Login here</a>
+        </p>
+    </div>
+
+</body>
+</html>

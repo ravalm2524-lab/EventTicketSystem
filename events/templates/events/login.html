@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .form-card { max-width: 500px; margin: 40px auto; background-color: #ffffff; border: 1px solid #ddd; border-radius: 8px; padding: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .form-card h1 { text-align: center; }
+        .form-card input { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .form-card button { width:100%; }
+        /* Django के एरर मैसेज को लाल दिखाने के लिए */
+        .errorlist { list-style-type: none; padding: 0; color: #dc3545; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px; padding: 10px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="form-card">
+        <h1>Login</h1>
+        <form method="POST">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+                <ul class="errorlist">
+                    <li>Please enter a correct username and password.</li>
+                </ul>
+            {% endif %}
+
+            {{ form.as_p }} 
+
+            <button type="submit" class="book-button" style="background-color: #007bff;">Login</button>
+        </form>
+        <p style="text-align:center; margin-top: 20px;">
+            Don't have an account? <a href="{% url 'signup' %}">Sign up here</a>
+        </p>
+    </div>
+</body>
+</html>
