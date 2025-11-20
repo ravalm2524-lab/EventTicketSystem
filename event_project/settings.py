@@ -127,3 +127,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Django को बताना कि हमारा 'login' व्यू कौन सा है
 LOGIN_URL = 'login'
+# static files ko jama karne ke liye folder
+import os
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
