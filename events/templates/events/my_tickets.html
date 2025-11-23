@@ -83,6 +83,10 @@
 
                     <p style="margin-top: 20px;">
                         <a href="{% url 'event_detail' booking.event.id %}" class="details-button">View Event Details</a>
+                        
+                        <a href="{% url 'download_ticket' booking.id %}" class="details-button" style="background-color: #dc3545; margin-left: 10px;">
+                            📄 Download PDF
+                        </a>
                     </p>
                 </div>
             {% endfor %}

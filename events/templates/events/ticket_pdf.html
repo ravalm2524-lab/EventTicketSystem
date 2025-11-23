@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Helvetica, sans-serif; color: #333; }
+        .header { text-align: center; background-color: #007bff; color: white; padding: 10px; }
+        .content { margin: 20px; font-size: 14px; }
+        .ticket-box { border: 2px dashed #007bff; padding: 20px; margin-top: 20px; }
+        h1 { margin: 0; }
+        .label { font-weight: bold; color: #555; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>EVENT TICKET</h1>
+        <p>Booking ID: #{{ booking.id }}</p>
+    </div>
+
+    <div class="ticket-box">
+        <p><span class="label">Event Name:</span> {{ event.name }}</p>
+        <p><span class="label">Location:</span> {{ event.location }}</p>
+        <p><span class="label">Date & Time:</span> {{ event.date }}</p>
+        <hr>
+        <p><span class="label">Attendee Name:</span> {{ user.username }}</p>
+        <p><span class="label">Attendee Email:</span> {{ user.email }}</p>
+        <hr>
+        <p><span class="label">Quantity:</span> {{ booking.quantity }} Tickets</p>
+        <p><span class="label">Total Price:</span> ${{ booking.total_price }}</p>
+        <br>
+       <p style="text-align: center; color: green; font-size: 18px; font-weight: bold;">CONFIRMED</p>   
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px; color: #777;">
+        <p>Thank you for booking with EventTickets!</p>
+        <p>Please show this ticket at the entrance.</p>
+    </div>
+</body>
+</html>

@@ -1,3 +1,5 @@
+from django.http import HttpResponse
+from .utils import render_to_pdf  # Jo file abhi humne banayi
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Event, Booking
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -111,3 +113,45 @@ def my_tickets_view(request):
 @login_required
 def profile_view(request):
     return render(request, 'events/profile.html')
+   # ---------------------------------------------------
+# MY TICKETS VIEW
+# ---------------------------------------------------
+@login_required
+def my_tickets_view(request):
+    bookings = Booking.objects.filter(user=request.user).order_by('-booking_time')
+    return render(request, 'events/my_tickets.html', {'bookings': bookings})
+
+# ---------------------------------------------------
+# USER PROFILE VIEW
+# ---------------------------------------------------
+@login_required
+def profile_view(request):
+    return render(request, 'events/profile.html')
+
+# ---------------------------------------------------
+# PDF DOWNLOAD VIEW
+# ---------------------------------------------------
+@login_required
+def download_ticket(request, booking_id):
+    # 1. Database se booking dhoondo
+    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+    
+    # 2. Data taiyar karo
+    context = {
+        'booking': booking,
+        'user': request.user,
+        'event': booking.event
+    }
+    
+    # 3. PDF banao
+    pdf = render_to_pdf('events/ticket_pdf.html', context)
+    
+    # 4. Agar PDF ban gayi, toh download karwao
+    if pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        filename = f"Ticket_{booking.id}.pdf"
+        content = f"attachment; filename={filename}"
+        response['Content-Disposition'] = content
+        return response
+    
+    return HttpResponse("Not Found")

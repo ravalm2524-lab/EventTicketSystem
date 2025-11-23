@@ -27,4 +27,8 @@ urlpatterns = [
         template_name='events/password_change.html',
         success_url='/profile/'
     ), name='password_change'),
+    # ... baaki URLs ...
+    
+    # 7. Download PDF Ticket
+    path('download-ticket/<int:booking_id>/', views.download_ticket, name='download_ticket'),
 ]
