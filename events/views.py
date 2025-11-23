@@ -107,3 +107,7 @@ def my_tickets_view(request):
 
     # 2. सीधे टेंप्लेट को भेज दें
     return render(request, 'events/my_tickets.html', {'bookings': bookings})
+    # User Profile View
+@login_required
+def profile_view(request):
+    return render(request, 'events/profile.html')

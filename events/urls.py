@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+# Password Change ke liye yeh import zaroori hai
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # 1. Event Listing (Homepage)
@@ -9,11 +11,20 @@ urlpatterns = [
     path('<int:event_id>/', views.event_detail, name='event_detail'),
     path('<int:event_id>/book/', views.book_event, name='book_event'),
     
-    # 3. User Authentication
+    # 3. User Authentication (Login/Signup/Logout)
     path('signup/', views.signup_view, name='signup'),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
     
-    # 4. My Tickets (Naya Path)
-    path('my_tickets/', views.my_tickets_view, name='my_tickets_view'), # Nayi line
+    # 4. My Tickets
+    path('my_tickets/', views.my_tickets_view, name='my_tickets_view'),
+
+    # 5. Profile Page
+    path('profile/', views.profile_view, name='profile'),
+    
+    # 6. Change Password (Django Built-in Logic)
+    path('password-change/', auth_views.PasswordChangeView.as_view(
+        template_name='events/password_change.html',
+        success_url='/profile/'
+    ), name='password_change'),
 ]
